@@ -1,20 +1,20 @@
 package com.martoph.medals;
 
 public enum  Text {
-    LOCKED(ConfigUtil.getString("text.locked")),
-    SYNTAX(ConfigUtil.getString("text.syntax")),
-    INVALIDMATERIAL(ConfigUtil.getString("text.invalidMaterial")),
-    INVALIDMEDAL(ConfigUtil.getString("text.invalidMedal")),
-    SUCCESSFULCREATE(ConfigUtil.getString("text.successfulCreate")),
-    SUCCESSFULDELETE(ConfigUtil.getString("text.successfulDelete")),
-    GUINAME(ConfigUtil.getString("text.guiname")),
-    DESPAWN(ConfigUtil.getString("text.despawn")),
-    NEXTPAGE(ConfigUtil.getString("text.nextpage")),
-    PREVPAGE(ConfigUtil.getString("text.prevpage")),
-    HIDDENFROMPLAYER(ConfigUtil.getString("text.hiddenFromPlayer")),
-    HIDDENFROMPLAYERLORE(ConfigUtil.getString("text.hiddenFromPlayerLore")),
-    SHOWNTOPLAYER(ConfigUtil.getString("text.shownToPlayer")),
-    SHOWNTOPLAYERLORE(ConfigUtil.getString("text.shownToPlayerLore"));
+    LOCKED("locked"),
+    SYNTAX("syntax"),
+    INVALIDMATERIAL("invalidMaterial"),
+    INVALIDMEDAL("invalidMedal"),
+    SUCCESSFULCREATE("successfulCreate"),
+    SUCCESSFULDELETE("successfulDelete"),
+    GUINAME("guiname"),
+    DESPAWN("despawn"),
+    NEXTPAGE("nextpage"),
+    PREVPAGE("prevpage"),
+    HIDDENFROMPLAYER("hiddenFromPlayer"),
+    HIDDENFROMPLAYERLORE("hiddenFromPlayerLore"),
+    SHOWNTOPLAYER("shownToPlayer"),
+    SHOWNTOPLAYERLORE("shownToPlayerLore");
 
     private String value;
 
@@ -23,6 +23,6 @@ public enum  Text {
     }
 
     public String getValue() {
-        return value;
+        return ConfigUtil.getString("text." + value);
     }
 }
