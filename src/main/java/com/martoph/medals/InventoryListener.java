@@ -42,6 +42,11 @@ public class InventoryListener implements Listener {
                     GUI.refresh(player);
                 }
             } else {
+
+                if (event.getCurrentItem().getItemMeta().getDisplayName() == null) {
+                    return;
+                }
+
                 Medal medal;
 
                 medal = Medal.getFromDisplayName(event.getCurrentItem().getItemMeta().getDisplayName());
@@ -51,6 +56,7 @@ public class InventoryListener implements Listener {
                 }
 
                 MartophsMedals.createMedal(player, medal);
+                MartophsMedals.medalHidden.remove(player);
             }
 
             GUI.refresh(player);

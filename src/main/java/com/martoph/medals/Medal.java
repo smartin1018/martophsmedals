@@ -15,6 +15,7 @@ public class Medal {
 
     private String name, display;
     private Material icon;
+    private byte data;
 
     private Plugin martophsMedals;
 
@@ -24,10 +25,11 @@ public class Medal {
         this.martophsMedals = martophsMedals;
     }
 
-    public Medal(String name, String display, Material icon) {
+    public Medal(String name, String display, Material icon, byte data) {
         this.name = name;
         this.display = display;
         this.icon = icon;
+        this.data = data;
     }
 
     public String getName() {
@@ -54,6 +56,14 @@ public class Medal {
         this.icon = icon;
     }
 
+    public byte getData() {
+        return data;
+    }
+
+    public void setData(byte data) {
+        this.data = data;
+    }
+
     private File medalFile;
     private YamlConfiguration medalYaml;
 
@@ -76,6 +86,7 @@ public class Medal {
             medalYaml.createSection("medals.example");
             medalYaml.set("medals.example.display", "&fExample");
             medalYaml.set("medals.example.icon", "DIAMOND_BLOCK");
+            medalYaml.set("medals.example.data", "0");
             medalYaml.save(medalFile);
         }
 
@@ -91,6 +102,7 @@ public class Medal {
             display = medalYaml.getString(path + ".display");
 
             icon = Material.getMaterial(medalYaml.get(path + ".icon").toString().toUpperCase());
+            data = (byte) medalYaml.getInt(path + ".data");
 
             try {
                 icon.name();
@@ -103,13 +115,13 @@ public class Medal {
                 display = display.substring(0, 15);
             }
 
-            Medal medal = new Medal(key, display, icon);
+            Medal medal = new Medal(key, display, icon, data);
             medals.add(medal);
         }
     }
 
-    void create(String name, String display, Material icon){
-        Medal medal = new Medal(name, display, icon);
+    void create(String name, String display, Material icon, byte data){
+        Medal medal = new Medal(name, display, icon, data);
         medals.add(medal);
     }
 
@@ -131,6 +143,7 @@ public class Medal {
 
             medalYaml.set("medals." + medal.getName() + ".display", medal.getDisplay());
             medalYaml.set("medals." + medal.getName() + ".icon", medal.getIcon().name());
+            medalYaml.set("medals." + medal.getName() + ".data", medal.getData());
         }
 
         for (String key : medalYaml.getConfigurationSection("medals").getKeys(false)) {

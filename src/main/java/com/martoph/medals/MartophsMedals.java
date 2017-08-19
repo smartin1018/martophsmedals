@@ -78,6 +78,7 @@ public class MartophsMedals extends JavaPlugin {
             } catch (NullPointerException ignored) {
             }
         }
+        pluginManager.removePermission(new Permission("mmedal.admin"));
 
         for (Player player : Bukkit.getOnlinePlayers()) {
             player.closeInventory();
@@ -130,12 +131,19 @@ public class MartophsMedals extends JavaPlugin {
                         return false;
                     }
 
-                    if (Material.getMaterial(args[3].toUpperCase()) == null) {
+                    if (Material.getMaterial(args[3].split(":")[0].toUpperCase()) == null) {
                         player.sendMessage(Text.INVALIDMATERIAL.getValue());
+                        return false;
                     }
 
+                    byte data = (byte) 0;
+
+                    try {
+                        data = (byte) Integer.parseInt(args[3].split(":")[1]);
+                    } catch (IndexOutOfBoundsException | NumberFormatException ignored) {}
+
                     Medal medalClass = new Medal(this);
-                    medalClass.create(args[1], args[2], Material.getMaterial(args[3].toUpperCase()));
+                    medalClass.create(args[1], args[2], Material.getMaterial(args[3].split(":")[0].toUpperCase()), data);
                     player.sendMessage(Text.SUCCESSFULCREATE.getValue());
                     return true;
                 }

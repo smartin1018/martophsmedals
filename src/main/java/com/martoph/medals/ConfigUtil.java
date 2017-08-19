@@ -1,5 +1,6 @@
 package com.martoph.medals;
 
+import org.bukkit.Material;
 import org.bukkit.configuration.file.FileConfiguration;
 import org.bukkit.configuration.file.YamlConfiguration;
 
@@ -34,7 +35,7 @@ public class ConfigUtil {
             }
 
             if (Text.INVALIDMEDAL.getValue() == null) {
-                configYaml.set("text.invalidMaterial", "§cInvalid medal.");
+                configYaml.set("text.invalidMedal", "§cInvalid medal.");
             }
 
             if (Text.SUCCESSFULCREATE.getValue() == null) {

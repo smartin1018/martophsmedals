@@ -57,7 +57,7 @@ public class GUI {
                 amplifier++;
             }
 
-            ItemStack medalItem = new ItemStack(medal.getIcon());
+            ItemStack medalItem = new ItemStack(medal.getIcon(), 1, (short) 0, medal.getData());
             ItemMeta medalItemMeta = medalItem.getItemMeta();
             if (!player.hasPermission("mmedals." + medal.getName())) {
                 List<String> lore = new ArrayList<String>() {{
