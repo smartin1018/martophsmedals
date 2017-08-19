@@ -1,0 +1,6 @@
+main: com.martoph.medals.MartophsMedals
+name: MartophsMedals
+version: 1.0-SNAPSHOT
+author: Martoph (Sage Martin)
+commands:
+  medals:

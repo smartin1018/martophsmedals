@@ -1,0 +1,8 @@
+com\martoph\medals\ConfigUtil.class
+com\martoph\medals\MartophsMedals.class
+com\martoph\medals\GUI.class
+com\martoph\medals\InventoryListener.class
+com\martoph\medals\PlayerListener.class
+com\martoph\medals\Text.class
+com\martoph\medals\Medal.class
+com\martoph\medals\GUI$1.class
