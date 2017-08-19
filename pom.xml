@@ -5,8 +5,24 @@
     <modelVersion>4.0.0</modelVersion>
 
     <groupId>com.martoph</groupId>
-    <artifactId>MartophsMedals1.12.1</artifactId>
-    <version>1.1.2</version>
+    <artifactId>martophsmedals-parent</artifactId>
+    <packaging>pom</packaging>
+    <version>parent</version>
+    <name>MartophsMedals parent</name>
+
+    <modules>
+        <module>Plugin</module>
+        <module>v1_8_R3</module>
+        <module>v1_12_R1</module>
+        <module>Core</module>
+    </modules>
+    
+    <repositories>
+        <repository>
+            <id>spigot-repo</id>
+            <url>https://hub.spigotmc.org/nexus/content/repositories/snapshots/</url>
+        </repository>
+    </repositories>
 
     <properties>
         <project.build.sourceEncoding>UTF-8</project.build.sourceEncoding>
@@ -25,22 +41,6 @@
             </plugin>
         </plugins>
     </build>
-    
-    <repositories>
-        <repository>
-            <id>spigot-repo</id>
-            <url>https://hub.spigotmc.org/nexus/content/repositories/snapshots/</url>
-        </repository>
-    </repositories>
 
-    <dependencies>
-        <dependency>
-            <groupId>org.spigotmc</groupId>
-            <artifactId>spigot</artifactId>
-            <version>1.12.1-R0.1-SNAPSHOT</version>
-            <scope>provided</scope>
-        </dependency>
-
-    </dependencies>
 
 </project>

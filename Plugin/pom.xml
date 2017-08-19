@@ -1,0 +1,79 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<project xmlns="http://maven.apache.org/POM/4.0.0"
+         xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+         xsi:schemaLocation="http://maven.apache.org/POM/4.0.0 http://maven.apache.org/xsd/maven-4.0.0.xsd">
+    <parent>
+        <artifactId>martophsmedals-parent</artifactId>
+        <groupId>com.martoph</groupId>
+        <version>parent</version>
+    </parent>
+    <modelVersion>4.0.0</modelVersion>
+
+    <artifactId>martophsmedals-plugin</artifactId>
+    <version>1.1.2</version>
+
+    <dependencies>
+        <dependency>
+            <groupId>com.martoph</groupId>
+            <artifactId>martophsmedals-core</artifactId>
+            <version>1.1.2</version>
+            <type>jar</type>
+            <scope>compile</scope>
+            <optional>true</optional>
+        </dependency>
+        <dependency>
+            <groupId>com.martoph</groupId>
+            <artifactId>martophsmedals-v1_8_R3</artifactId>
+            <version>v1_8_R3</version>
+            <type>jar</type>
+            <scope>compile</scope>
+            <optional>true</optional>
+        </dependency>
+        <dependency>
+            <groupId>com.martoph</groupId>
+            <artifactId>martophsmedals-v1_12_R1</artifactId>
+            <version>v1_12_R1</version>
+            <type>jar</type>
+            <scope>compile</scope>
+            <optional>true</optional>
+        </dependency>
+        <dependency> <!-- Spigot (this includes Spigot API, Bukkit API, Craftbukkit and NMS) -->
+            <groupId>org.spigotmc</groupId>
+            <artifactId>spigot</artifactId>
+            <version>1.12.1-R0.1-SNAPSHOT</version>
+            <scope>provided</scope>
+            <type>jar</type>
+            <optional>true</optional>
+        </dependency>
+    </dependencies>
+
+    <build>
+        <directory>../target</directory> <!-- Build it one level up, because it is the one we care about -->
+        <plugins>
+            <plugin>
+                <groupId>org.apache.maven.plugins</groupId>
+                <artifactId>maven-compiler-plugin</artifactId>
+                <version>3.6.2</version>
+                <configuration>
+                    <source>1.8</source>
+                    <target>1.8</target>
+                </configuration>
+            </plugin>
+            <plugin>
+                <groupId>org.apache.maven.plugins</groupId>
+                <artifactId>maven-shade-plugin</artifactId>
+                <version>3.0.0</version>
+                <executions>
+                    <execution>
+                        <phase>package</phase>
+                        <goals>
+                            <goal>shade</goal>
+                        </goals>
+                    </execution>
+                </executions>
+            </plugin>
+        </plugins>
+    </build>
+
+
+</project>
