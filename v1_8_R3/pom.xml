@@ -15,7 +15,7 @@
         <dependency>
             <groupId>com.martoph</groupId>
             <artifactId>martophsmedals-core</artifactId>
-            <version>1.1.2</version>
+            <version>core</version>
         </dependency>
 
         <dependency> <!-- Spigot (this includes Spigot API, Bukkit API, Craftbukkit and NMS) -->
