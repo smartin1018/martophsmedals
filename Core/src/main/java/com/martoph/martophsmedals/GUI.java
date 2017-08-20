@@ -77,7 +77,7 @@ public class GUI {
         despawnItemMeta.setDisplayName(Text.DESPAWN.getValue());
         despawn.setItemMeta(despawnItemMeta);
 
-        if (MartophsMedals.currentPlates.containsKey(player)) {
+        if (MartophsMedals.currentPlayerOwnedPlates.containsKey(player)) {
             medalInventory.setItem(medalInventory.getSize() - 4, despawn);
         }
 
@@ -93,7 +93,7 @@ public class GUI {
         shownToPlayerMeta.setLore(Arrays.asList(Text.SHOWNTOPLAYERLORE.getValue().split(";")));
         shownToPlayer.setItemMeta(shownToPlayerMeta);
 
-        if (MartophsMedals.currentPlates.containsKey(player)) {
+        if (MartophsMedals.currentPlayerOwnedPlates.containsKey(player)) {
             if (MartophsMedals.medalHidden.contains(player)) {
                 medalInventory.setItem(medalInventory.getSize() - 6, hiddenFromPlayer);
             } else {

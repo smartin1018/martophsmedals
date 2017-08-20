@@ -140,7 +140,7 @@ public class Medal {
                 medalYaml.createSection("medals." + medal.getName());
             }
 
-            medalYaml.set("medals." + medal.getName() + ".display", medal.getDisplay());
+            medalYaml.set("medals." + medal.getName() + ".display", medal.getDisplay().replace("§", "&"));
             medalYaml.set("medals." + medal.getName() + ".icon", medal.getIcon().name());
             medalYaml.set("medals." + medal.getName() + ".data", medal.getData());
         }

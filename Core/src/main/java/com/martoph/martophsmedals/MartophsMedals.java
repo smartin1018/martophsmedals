@@ -1,6 +1,7 @@
 package com.martoph.martophsmedals;
 
 import org.bukkit.Bukkit;
+import org.bukkit.Location;
 import org.bukkit.Material;
 import org.bukkit.Server;
 import org.bukkit.command.Command;
@@ -13,8 +14,11 @@ import org.bukkit.permissions.Permission;
 import org.bukkit.plugin.Plugin;
 import org.bukkit.plugin.PluginManager;
 import org.bukkit.plugin.java.JavaPlugin;
+import org.bukkit.scheduler.BukkitRunnable;
 
 import java.io.IOException;
+import java.lang.reflect.InvocationTargetException;
+import java.lang.reflect.Method;
 import java.util.ArrayList;
 import java.util.HashMap;
 import java.util.Map;
@@ -27,12 +31,14 @@ public class MartophsMedals extends JavaPlugin {
 
     private PluginManager pluginManager;
 
-    public static HashMap<UUID, Integer> guiViewers = new HashMap<>();
     public static ArrayList<Player> medalHidden = new ArrayList<>();
-    public static Map<Player, ArmorStand> currentPlates = new HashMap<>();
+    public static HashMap<UUID, Integer> guiViewers = new HashMap<>();
+    public static Map<Player, ArmorStand> currentPlayerOwnedPlates = new HashMap<>();
+    public static Map<Player, ArmorStand> currentOutsideVisiblePlates = new HashMap<>();
 
-    private Listener inventoryListner = null;
     private static String version;
+
+    static Class<?> medalUtil;
 
     public void onEnable() {
         plugin = this;
@@ -44,11 +50,12 @@ public class MartophsMedals extends JavaPlugin {
         getLogger().info("Loading MartophsMedals for version " + version);
 
         try {
-            final Class<?> inventoryListenerClass = Class.forName("com.martoph.martophsmedals." + version + ".InventoryListener");
-            // Check if we have a NMSHandler class at that location.
+            medalUtil = Class.forName("com.martoph.martophsmedals." + version + ".MedalUtil");
+
+            /* Check if we have a NMSHandler class at that location.
             if (Listener.class.isAssignableFrom(inventoryListenerClass)) {
                 this.inventoryListner = (Listener) inventoryListenerClass.getConstructor().newInstance();
-            }
+            }*/
         } catch (final Exception e) {
             e.printStackTrace();
             getLogger().severe("Could not find support for this server version.");
@@ -71,14 +78,23 @@ public class MartophsMedals extends JavaPlugin {
 
         pluginManager = server.getPluginManager();
 
-        pluginManager.addPermission(new Permission("mmedal.medal"));
         pluginManager.addPermission(new Permission("mmedal.admin"));
 
         for (Medal medal : Medal.medals) {
             pluginManager.addPermission(new Permission("mmedal." + medal.getName()));
         }
 
-        pluginManager.registerEvents(inventoryListner, this);
+        pluginManager.registerEvents(new InventoryListener(), this);
+        pluginManager.registerEvents(new PlayerListener(), this);
+
+        new BukkitRunnable() {
+            @Override
+            public void run() {
+                for (Map.Entry<Player, ArmorStand> entry : currentOutsideVisiblePlates.entrySet()) {
+                    entry.getValue().teleport(getPlayerHeadLocation(entry.getKey()));
+                }
+            }
+        }.runTaskTimer(this, 0, 1);
 
     }
 
@@ -98,7 +114,7 @@ public class MartophsMedals extends JavaPlugin {
 
         for (Player player : Bukkit.getOnlinePlayers()) {
             player.closeInventory();
-            removeMedal(player);
+            removeMedal(player, true);
         }
 
         Medal medal = new Medal(this);
@@ -192,29 +208,27 @@ public class MartophsMedals extends JavaPlugin {
         console.sendMessage("§cPlayer command only!");
     }
 
-    public static void createMedal(Player player, Medal medal) {
+    public static Location getPlayerHeadLocation(Player player) {
+        return player.getLocation().add(0, .1, 0);
+    }
 
-        removeMedal(player);
-
-        ArmorStand armorstandFinal = player.getWorld().spawn(player.getLocation(), ArmorStand.class);
-        armorstandFinal.setSmall(true);
-        armorstandFinal.setVisible(false);
-        armorstandFinal.setCustomName(medal.getDisplay().replace("&", "§"));
-        armorstandFinal.setCustomNameVisible(true);
-
-        currentPlates.put(player, armorstandFinal);
-        if (version.equals("v1_8_R3")) {
-            player.setPassenger(armorstandFinal);
-        } else  {
-            player.addPassenger(armorstandFinal);
+    public static void removeMedal(Player player, boolean outsideStand) {
+        try {
+            Method removeMedal = medalUtil.getDeclaredMethod("removeMedal", Player.class, Boolean.class);
+            removeMedal.setAccessible(true);
+            removeMedal.invoke(medalUtil, player, outsideStand);
+        } catch (NoSuchMethodException | IllegalAccessException | InvocationTargetException e) {
+            e.printStackTrace();
         }
     }
 
-    public static void removeMedal(Player player) {
-        if (MartophsMedals.currentPlates.containsKey(player)) {
-            player.eject();
-            MartophsMedals.currentPlates.get(player).remove();
-            MartophsMedals.currentPlates.remove(player);
+    public static void createMedal(Player player, Medal medal) {
+        try {
+            Method createMedal = medalUtil.getDeclaredMethod("createMedal", Player.class, Medal.class);
+            createMedal.setAccessible(true);
+            createMedal.invoke(medalUtil, player, medal);
+        } catch (NoSuchMethodException | IllegalAccessException | InvocationTargetException e) {
+            e.printStackTrace();
         }
     }
 

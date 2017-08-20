@@ -1,5 +1,6 @@
 package com.martoph.martophsmedals;
 
+import org.bukkit.configuration.ConfigurationSection;
 import org.bukkit.configuration.file.YamlConfiguration;
 
 import java.io.File;
@@ -19,68 +20,68 @@ class ConfigUtil {
             MartophsMedals.getPlugin().saveDefaultConfig();
         } else {
             YamlConfiguration configYaml = YamlConfiguration.loadConfiguration(configFile);
-            if (Text.LOCKED.getValue() == null) {
-                configYaml.set("text.locked", "&cLocked!");
+            if (configYaml.getString(Text.LOCKED.getValue()) == null) {
+                configYaml.set("configYaml.getString(Text.locked", "&cLocked!");
             }
 
-            if (Text.SYNTAX.getValue() == null) {
-                configYaml.set("text.syntax", "&cInvalid syntax. Usage: {usage}");
-
-            }
-
-            if (Text.INVALIDMATERIAL.getValue() == null) {
-                configYaml.set("text.invalidMaterial", "&cInvalid material.");
-            }
-
-            if (Text.INVALIDMEDAL.getValue() == null) {
-                configYaml.set("text.invalidMedal", "&cInvalid medal.");
-            }
-
-            if (Text.SUCCESSFULCREATE.getValue() == null) {
-                configYaml.set("text.successfulCreate", "&aMedal created successfully.");
-            }
-
-            if (Text.SUCCESSFULDELETE.getValue() == null) {
-                configYaml.set("text.successfulDelete", "&aMedal deleted successfully.");
-            }
-
-            if (Text.GUINAME.getValue() == null) {
-                configYaml.set("text.guiname", "&6Your Medals");
+            if (configYaml.getString(Text.SYNTAX.getValue()) == null) {
+                configYaml.set("configYaml.getString(Text.syntax", "&cInvalid syntax. Usage: {usage}");
 
             }
 
-            if (Text.DESPAWN.getValue() == null) {
-                configYaml.set("text.despawn", "&cDespawn com.martoph.martophsmedals.Medal");
+            if (configYaml.getString(Text.INVALIDMATERIAL.getValue()) == null) {
+                configYaml.set("configYaml.getString(Text.invalidMaterial", "&cInvalid material.");
+            }
+
+            if (configYaml.getString(Text.INVALIDMEDAL.getValue()) == null) {
+                configYaml.set("configYaml.getString(Text.invalidMedal", "&cInvalid medal.");
+            }
+
+            if (configYaml.getString(Text.SUCCESSFULCREATE.getValue()) == null) {
+                configYaml.set("configYaml.getString(Text.successfulCreate", "&aMedal created successfully.");
+            }
+
+            if (configYaml.getString(Text.SUCCESSFULDELETE.getValue()) == null) {
+                configYaml.set("configYaml.getString(Text.successfulDelete", "&aMedal deleted successfully.");
+            }
+
+            if (configYaml.getString(Text.GUINAME.getValue()) == null) {
+                configYaml.set("configYaml.getString(Text.guiname", "&6Your Medals");
 
             }
 
-            if (Text.NEXTPAGE.getValue() == null) {
-                configYaml.set("text.nextpage", "&aNext Page");
+            if (configYaml.getString(Text.DESPAWN.getValue()) == null) {
+                configYaml.set("configYaml.getString(Text.despawn", "&cDespawn com.martoph.martophsmedals.Medal");
 
             }
 
-            if (Text.PREVPAGE.getValue() == null) {
-                configYaml.set("text.prevpage", "&aPrevious Page");
+            if (configYaml.getString(Text.NEXTPAGE.getValue()) == null) {
+                configYaml.set("configYaml.getString(Text.nextpage", "&aNext Page");
 
             }
 
-            if (Text.HIDDENFROMPLAYER.getValue() == null) {
-                configYaml.set("text.hiddenFromPlayer", "&cMedal Hidden!");
+            if (configYaml.getString(Text.PREVPAGE.getValue()) == null) {
+                configYaml.set("configYaml.getString(Text.prevpage", "&aPrevious Page");
 
             }
 
-            if (Text.HIDDENFROMPLAYERLORE.getValue() == null) {
-                configYaml.set("text.hiddenFromPlayerLore", "&7Your medal is hidden from you to allow interaction.;&7Click to enable.");
+            if (configYaml.getString(Text.HIDDENFROMPLAYER.getValue()) == null) {
+                configYaml.set("configYaml.getString(Text.hiddenFromPlayer", "&cMedal Hidden!");
 
             }
 
-            if (Text.SHOWNTOPLAYER.getValue() == null) {
-                configYaml.set("text.shownToPlayer", "&2Medal Shown");
+            if (configYaml.getString(Text.HIDDENFROMPLAYERLORE.getValue()) == null) {
+                configYaml.set("configYaml.getString(Text.hiddenFromPlayerLore", "&7Your medal is hidden from you to allow interaction.;&7Click to enable.");
 
             }
 
-            if (Text.SHOWNTOPLAYERLORE.getValue() == null) {
-                configYaml.set("text.shownToPlayerLore", "&7Your medal is shown to you. This disables interaction.;&7Click to disable.");
+            if (configYaml.getString(Text.SHOWNTOPLAYER.getValue()) == null) {
+                configYaml.set("configYaml.getString(Text.shownToPlayer", "&2Medal Shown");
+
+            }
+
+            if (configYaml.getString(Text.SHOWNTOPLAYERLORE.getValue()) == null) {
+                configYaml.set("configYaml.getString(Text.shownToPlayerLore", "&7Your medal is shown to you. This disables interaction.;&7Click to disable.");
 
             }
 

@@ -9,11 +9,11 @@ public class PlayerListener implements Listener {
 
     @EventHandler
     public void onLeave(PlayerQuitEvent event) {
-        MartophsMedals.removeMedal(event.getPlayer());
+        MartophsMedals.removeMedal(event.getPlayer(), true);
     }
 
     @EventHandler
     public void onKick(PlayerKickEvent event) {
-        MartophsMedals.removeMedal(event.getPlayer());
+        MartophsMedals.removeMedal(event.getPlayer(), true);
     }
 }
