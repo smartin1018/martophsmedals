@@ -43,8 +43,9 @@ public class MedalUtil {
 
         ArmorStand armorStandOutsideVisible = player.getWorld().spawn(player.getLocation(), ArmorStand.class);
         armorStandOutsideVisible.setVisible(false);
-        armorStandOutsideVisible.setCustomName(medal.getDisplay().replace("&", "§"));
-        armorStandOutsideVisible.setCustomNameVisible(true);
+        armorStandOutsideVisible.setGravity(false);
+        armorStandPlayerVisible.setCustomName(medal.getDisplay().replace("&", "§"));
+        armorStandPlayerVisible.setCustomNameVisible(true);
 
         PacketPlayOutEntityDestroy killStand = new PacketPlayOutEntityDestroy(1, armorStandOutsideVisible.getEntityId());
         ((CraftPlayer) player).getHandle().playerConnection.sendPacket(killStand);
