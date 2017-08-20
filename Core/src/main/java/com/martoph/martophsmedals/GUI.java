@@ -94,10 +94,10 @@ public class GUI {
         shownToPlayer.setItemMeta(shownToPlayerMeta);
 
         if (MartophsMedals.currentPlayerOwnedPlates.containsKey(player)) {
-            if (MartophsMedals.medalHidden.contains(player)) {
-                medalInventory.setItem(medalInventory.getSize() - 6, hiddenFromPlayer);
-            } else {
+            if (MartophsMedals.medalShown.contains(player)) {
                 medalInventory.setItem(medalInventory.getSize() - 6, shownToPlayer);
+            } else {
+                medalInventory.setItem(medalInventory.getSize() - 6, hiddenFromPlayer);
             }
 
         }

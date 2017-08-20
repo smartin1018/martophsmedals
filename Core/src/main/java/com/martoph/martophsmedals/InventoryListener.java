@@ -26,15 +26,16 @@ public class InventoryListener implements Listener {
                 MartophsMedals.removeMedal(player, true);
             } else if (event.getRawSlot() == event.getInventory().getSize() - 6) {
                 if (event.getCurrentItem().getType() == Material.MAGMA_CREAM) {
-                    MartophsMedals.medalHidden.remove(player);
+                    MartophsMedals.medalShown.add(player);
 
-                    MartophsMedals.createMedal(player, Medal.getFromDisplayName(MartophsMedals.currentPlayerOwnedPlates.get(player).getCustomName()));
+                    MartophsMedals.createMedal(player, Medal.getFromDisplayName(MartophsMedals.currentPlayerOwnedPlates.get(player).getCustomName()), true);
                     GUI.refresh(player);
                 }
 
                 if (event.getCurrentItem().getType() == Material.SLIME_BALL) {
-                    MartophsMedals.medalHidden.add(player);
-                    MartophsMedals.removeMedal(player, false);
+
+                    MartophsMedals.medalShown.remove(player);
+                    MartophsMedals.createMedal(player, Medal.getFromDisplayName(MartophsMedals.currentPlayerOwnedPlates.get(player).getCustomName()), false);
                     GUI.refresh(player);
                 }
             } else {
@@ -48,8 +49,10 @@ public class InventoryListener implements Listener {
                         return;
                     }
 
-                    MartophsMedals.createMedal(player, medal);
-                    MartophsMedals.medalHidden.remove(player);
+                    if (!player.hasPermission("mmedal." + medal.getName())) return;
+
+                    MartophsMedals.createMedal(player, medal, false);
+                    MartophsMedals.medalShown.remove(player);
                 } catch (NullPointerException ignored) {}
             }
 

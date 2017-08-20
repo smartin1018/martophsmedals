@@ -31,7 +31,7 @@ public class MartophsMedals extends JavaPlugin {
 
     private PluginManager pluginManager;
 
-    public static ArrayList<Player> medalHidden = new ArrayList<>();
+    public static ArrayList<Player> medalShown = new ArrayList<>();
     public static HashMap<UUID, Integer> guiViewers = new HashMap<>();
     public static Map<Player, ArmorStand> currentPlayerOwnedPlates = new HashMap<>();
     public static Map<Player, ArmorStand> currentOutsideVisiblePlates = new HashMap<>();
@@ -222,11 +222,11 @@ public class MartophsMedals extends JavaPlugin {
         }
     }
 
-    public static void createMedal(Player player, Medal medal) {
+    public static void createMedal(Player player, Medal medal, Boolean playerHead) {
         try {
-            Method createMedal = medalUtil.getDeclaredMethod("createMedal", Player.class, Medal.class);
+            Method createMedal = medalUtil.getDeclaredMethod("createMedal", Player.class, Medal.class, Boolean.class);
             createMedal.setAccessible(true);
-            createMedal.invoke(medalUtil, player, medal);
+            createMedal.invoke(medalUtil, player, medal, playerHead);
         } catch (NoSuchMethodException | IllegalAccessException | InvocationTargetException e) {
             e.printStackTrace();
         }

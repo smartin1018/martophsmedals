@@ -17,15 +17,16 @@ public class MedalUtil {
         if (currentPlayerOwnedPlates.containsKey(player)) {
             player.eject();
             currentPlayerOwnedPlates.get(player).remove();
-            currentPlayerOwnedPlates.remove(player);
         }
         if (currentOutsideVisiblePlates.containsKey(player) && outsideStand) {
             currentOutsideVisiblePlates.get(player).remove();
+
             currentOutsideVisiblePlates.remove(player);
+            currentPlayerOwnedPlates.remove(player);
         }
     }
 
-    public static void createMedal(Player player, Medal medal) {
+    public static void createMedal(Player player, Medal medal, Boolean playerHead) {
 
         removeMedal(player, true);
 
@@ -33,10 +34,12 @@ public class MedalUtil {
         armorStandPlayerVisible.setSmall(true);
         armorStandPlayerVisible.setVisible(false);
         armorStandPlayerVisible.setCustomName(medal.getDisplay().replace("&", "§"));
-        armorStandPlayerVisible.setCustomNameVisible(true);
+        armorStandPlayerVisible.setCustomNameVisible(playerHead);
+
+        player.addPassenger(armorStandPlayerVisible);
 
         for (Player player1 : Bukkit.getOnlinePlayers()) {
-            if (player1 == player) continue;
+            if (player1 == player && playerHead) continue;
             PacketPlayOutEntityDestroy killStand = new PacketPlayOutEntityDestroy(1, armorStandPlayerVisible.getEntityId());
             ((CraftPlayer) player1).getHandle().playerConnection.sendPacket(killStand);
         }
@@ -44,14 +47,13 @@ public class MedalUtil {
         ArmorStand armorStandOutsideVisible = player.getWorld().spawn(player.getLocation(), ArmorStand.class);
         armorStandOutsideVisible.setVisible(false);
         armorStandOutsideVisible.setGravity(false);
-        armorStandPlayerVisible.setCustomName(medal.getDisplay().replace("&", "§"));
-        armorStandPlayerVisible.setCustomNameVisible(true);
+        armorStandOutsideVisible.setCustomName(medal.getDisplay().replace("&", "§"));
+        armorStandOutsideVisible.setCustomNameVisible(true);
 
         PacketPlayOutEntityDestroy killStand = new PacketPlayOutEntityDestroy(1, armorStandOutsideVisible.getEntityId());
         ((CraftPlayer) player).getHandle().playerConnection.sendPacket(killStand);
 
-        currentOutsideVisiblePlates.put(player, armorStandOutsideVisible);
         currentPlayerOwnedPlates.put(player, armorStandPlayerVisible);
-        player.addPassenger(armorStandPlayerVisible);
+        currentOutsideVisiblePlates.put(player, armorStandOutsideVisible);
     }
 }
