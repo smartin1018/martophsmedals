@@ -1,0 +1,18 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<project version="4">
+  <component name="ProjectModuleManager">
+    <modules>
+      <module fileurl="file://$PROJECT_DIR$/core/martophsmedals-core.iml" filepath="$PROJECT_DIR$/core/martophsmedals-core.iml" />
+      <module fileurl="file://$PROJECT_DIR$/martophsmedals-parent.iml" filepath="$PROJECT_DIR$/martophsmedals-parent.iml" />
+      <module fileurl="file://$PROJECT_DIR$/plugin/martophsmedals-plugin.iml" filepath="$PROJECT_DIR$/plugin/martophsmedals-plugin.iml" />
+      <module fileurl="file://$PROJECT_DIR$/v1_10_R1/martophsmedals-v1_10_R1.iml" filepath="$PROJECT_DIR$/v1_10_R1/martophsmedals-v1_10_R1.iml" />
+      <module fileurl="file://$PROJECT_DIR$/v1_8_R1/martophsmedals-v1_8_R1.iml" filepath="$PROJECT_DIR$/v1_8_R1/martophsmedals-v1_8_R1.iml" />
+      <module fileurl="file://$PROJECT_DIR$/v1_8_R2/martophsmedals-v1_8_R2.iml" filepath="$PROJECT_DIR$/v1_8_R2/martophsmedals-v1_8_R2.iml" />
+      <module fileurl="file://$PROJECT_DIR$/v1_9_R1/martophsmedals-v1_9_R1.iml" filepath="$PROJECT_DIR$/v1_9_R1/martophsmedals-v1_9_R1.iml" />
+      <module fileurl="file://$PROJECT_DIR$/v1_9_R2/martophsmedals-v1_9_R2.iml" filepath="$PROJECT_DIR$/v1_9_R2/martophsmedals-v1_9_R2.iml" />
+      <module fileurl="file://$PROJECT_DIR$/v1_11_R1/martophsmedalsv1_11_R1.iml" filepath="$PROJECT_DIR$/v1_11_R1/martophsmedalsv1_11_R1.iml" />
+      <module fileurl="file://$PROJECT_DIR$/v1_12_R1/martophsmedalsv1_12_R1.iml" filepath="$PROJECT_DIR$/v1_12_R1/martophsmedalsv1_12_R1.iml" />
+      <module fileurl="file://$PROJECT_DIR$/v1_8_R3/martophsmedalsv1_8_R3.iml" filepath="$PROJECT_DIR$/v1_8_R3/martophsmedalsv1_8_R3.iml" />
+    </modules>
+  </component>
+</project>

@@ -1,0 +1,51 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<project version="4">
+  <component name="CompilerConfiguration">
+    <annotationProcessing>
+      <profile name="Maven default annotation processors profile" enabled="true">
+        <sourceOutputDir name="target/generated-sources/annotations" />
+        <sourceTestOutputDir name="target/generated-test-sources/test-annotations" />
+        <outputRelativeToContentRoot value="true" />
+        <module name="martophsmedals-core" />
+        <module name="martophsmedals-v1_10_R1" />
+        <module name="martophsmedals-v1_8_R1" />
+        <module name="martophsmedals-v1_8_R2" />
+        <module name="martophsmedals-v1_8_R3" />
+        <module name="martophsmedals-v1_9_R1" />
+        <module name="martophsmedals-v1_9_R2" />
+        <module name="martophsmedalsplugin" />
+        <module name="MartophsMedalsPlugin" />
+        <module name="martophsmedalsv1_11_R1" />
+        <module name="martophsmedalsv1_11_R2" />
+        <module name="martophsmedalsv1_12_R1" />
+        <module name="martophsmedalsv1_8_R3" />
+        <module name="usertags" />
+      </profile>
+      <profile name="Annotation profile for MartophsMedals parent" enabled="true">
+        <sourceOutputDir name="../target/generated-sources/annotations" />
+        <sourceTestOutputDir name="../target/generated-test-sources/test-annotations" />
+        <outputRelativeToContentRoot value="true" />
+        <module name="martophsmedals-plugin" />
+      </profile>
+    </annotationProcessing>
+    <bytecodeTargetLevel>
+      <module name="MartophsMedals" target="1.8" />
+      <module name="martophsmedals-core" target="1.8" />
+      <module name="martophsmedals-parent" target="1.8" />
+      <module name="martophsmedals-plugin" target="1.8" />
+      <module name="martophsmedals-v1_10_R1" target="1.8" />
+      <module name="martophsmedals-v1_8_R1" target="1.8" />
+      <module name="martophsmedals-v1_8_R2" target="1.8" />
+      <module name="martophsmedals-v1_8_R3" target="1.8" />
+      <module name="martophsmedals-v1_9_R1" target="1.8" />
+      <module name="martophsmedals-v1_9_R2" target="1.8" />
+      <module name="MartophsMedalsPlugin" target="1.8" />
+      <module name="martophsmedalsplugin" target="1.8" />
+      <module name="martophsmedalsv1_11_R1" target="1.8" />
+      <module name="martophsmedalsv1_11_R2" target="1.8" />
+      <module name="martophsmedalsv1_12_R1" target="1.8" />
+      <module name="martophsmedalsv1_8_R3" target="1.8" />
+      <module name="usertags" target="1.5" />
+    </bytecodeTargetLevel>
+  </component>
+</project>
