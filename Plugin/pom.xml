@@ -10,7 +10,7 @@
     <modelVersion>4.0.0</modelVersion>
 
     <artifactId>martophsmedals-plugin</artifactId>
-    <version>1.1.8</version>
+    <version>1.1.9</version>
 
     <dependencies>
         <dependency>
@@ -31,8 +31,40 @@
         </dependency>
         <dependency>
             <groupId>com.martoph</groupId>
+            <artifactId>martophsmedals-v1_8_R2</artifactId>
+            <version>v1_8_R2</version>
+            <type>jar</type>
+            <scope>compile</scope>
+            <optional>true</optional>
+        </dependency>
+        <dependency>
+            <groupId>com.martoph</groupId>
             <artifactId>martophsmedals-v1_8_R3</artifactId>
             <version>v1_8_R3</version>
+            <type>jar</type>
+            <scope>compile</scope>
+            <optional>true</optional>
+        </dependency>
+        <dependency>
+            <groupId>com.martoph</groupId>
+            <artifactId>martophsmedals-v1_9_R1</artifactId>
+            <version>v1_9_R1</version>
+            <type>jar</type>
+            <scope>compile</scope>
+            <optional>true</optional>
+        </dependency>
+        <dependency>
+            <groupId>com.martoph</groupId>
+            <artifactId>martophsmedals-v1_9_R2</artifactId>
+            <version>v1_9_R2</version>
+            <type>jar</type>
+            <scope>compile</scope>
+            <optional>true</optional>
+        </dependency>
+        <dependency>
+            <groupId>com.martoph</groupId>
+            <artifactId>martophsmedals-v1_10_R1</artifactId>
+            <version>v1_10_R1</version>
             <type>jar</type>
             <scope>compile</scope>
             <optional>true</optional>
