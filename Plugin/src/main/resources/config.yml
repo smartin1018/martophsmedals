@@ -7,7 +7,7 @@ text:
   successfulCreate: "&aMedal created successfully."
   successfulDelete: "&aMedal deleted successfully."
   guiname: "&6Your Medals"
-  despawn: "&cDespawn com.martoph.martophsmedals.Medal"
+  despawn: "&cDespawn Medal"
   nextpage: "&aNext Page"
   prevpage: "&aPrevious Page"
   hiddenFromPlayer: "&cMedal Hidden!"

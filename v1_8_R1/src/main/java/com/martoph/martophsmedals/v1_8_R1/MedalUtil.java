@@ -1,11 +1,9 @@
-package com.martoph.martophsmedals.v1_8_R3;
+package com.martoph.martophsmedals.v1_8_R1;
 
-import com.martoph.martophsmedals.MartophsMedals;
 import com.martoph.martophsmedals.Medal;
-import net.minecraft.server.v1_8_R3.PacketPlayOutEntityDestroy;
+import net.minecraft.server.v1_8_R1.PacketPlayOutEntityDestroy;
 import org.bukkit.Bukkit;
-import org.bukkit.ChatColor;
-import org.bukkit.craftbukkit.v1_8_R3.entity.CraftPlayer;
+import org.bukkit.craftbukkit.v1_8_R1.entity.CraftPlayer;
 import org.bukkit.entity.ArmorStand;
 import org.bukkit.entity.Player;
 
