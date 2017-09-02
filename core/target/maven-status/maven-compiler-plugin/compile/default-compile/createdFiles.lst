@@ -7,3 +7,4 @@ com\martoph\martophsmedals\Medal.class
 com\martoph\martophsmedals\PlayerListener.class
 com\martoph\martophsmedals\Text.class
 com\martoph\martophsmedals\ConfigUtil.class
+com\martoph\martophsmedals\MartophsMedals$2.class

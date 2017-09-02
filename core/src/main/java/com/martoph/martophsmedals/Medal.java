@@ -18,7 +18,8 @@ public class Medal {
 
     private Plugin martophsMedals;
 
-    public static ArrayList<Medal> medals = new ArrayList<Medal>();
+    public static ArrayList<Medal> medalsOnEnable = new ArrayList<>();
+    public static ArrayList<Medal> medalsOnDisable = new ArrayList<>();
 
     public Medal(Plugin martophsMedals) {
         this.martophsMedals = martophsMedals;
@@ -115,13 +116,13 @@ public class Medal {
             }
 
             Medal medal = new Medal(key, display, icon, data);
-            medals.add(medal);
+            medalList.add(medal);
         }
     }
 
     void create(String name, String display, Material icon, byte data){
         Medal medal = new Medal(name, display, icon, data);
-        medals.add(medal);
+        medalsOnEnable.add(medal);
     }
 
     void saveAll() throws IOException {
@@ -134,7 +135,7 @@ public class Medal {
 
         medalYaml = YamlConfiguration.loadConfiguration(medalFile);
 
-        for (Medal medal : medals) {
+        for (Medal medal : medalsOnEnable) {
 
             if (medalYaml.getConfigurationSection("medals." + medal.getName()) == null) {
                 medalYaml.createSection("medals." + medal.getName());
@@ -155,7 +156,7 @@ public class Medal {
 
     public static Medal getFromDisplayName(String displayName) {
         Medal medal = null;
-        for (Medal medalSearch : Medal.medals) {
+        for (Medal medalSearch : Medal.medalsOnEnable) {
             try {
                 if (medalSearch.getDisplay().replace("&", "§").equals(displayName)) {
                     medal = medalSearch;
@@ -169,7 +170,7 @@ public class Medal {
 
     public static Medal getFromName(String name) {
         Medal medal = null;
-        for (Medal medalSearch : Medal.medals) {
+        for (Medal medalSearch : Medal.medalsOnEnable) {
             try {
                 if (medalSearch.getName().equals(name)) {
                     medal = medalSearch;

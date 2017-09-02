@@ -3,6 +3,7 @@ package com.martoph.martophsmedals.v1_9_R1;
 import com.martoph.martophsmedals.Medal;
 import net.minecraft.server.v1_9_R1.PacketPlayOutEntityDestroy;
 import org.bukkit.Bukkit;
+import org.bukkit.ChatColor;
 import org.bukkit.craftbukkit.v1_9_R1.entity.CraftPlayer;
 import org.bukkit.entity.ArmorStand;
 import org.bukkit.entity.Player;
@@ -16,12 +17,12 @@ public class MedalUtil {
         if (currentPlayerOwnedPlates.containsKey(player)) {
             player.eject();
             currentPlayerOwnedPlates.get(player).remove();
+            currentPlayerOwnedPlates.remove(player);
         }
+
         if (currentOutsideVisiblePlates.containsKey(player) && outsideStand) {
             currentOutsideVisiblePlates.get(player).remove();
-
             currentOutsideVisiblePlates.remove(player);
-            currentPlayerOwnedPlates.remove(player);
         }
     }
 
@@ -32,7 +33,7 @@ public class MedalUtil {
         ArmorStand armorStandPlayerVisible = player.getWorld().spawn(player.getLocation(), ArmorStand.class);
         armorStandPlayerVisible.setSmall(true);
         armorStandPlayerVisible.setVisible(false);
-        armorStandPlayerVisible.setCustomName(medal.getDisplay().replace("&", "§"));
+        armorStandPlayerVisible.setCustomName(ChatColor.translateAlternateColorCodes('&', medal.getDisplay()));
         armorStandPlayerVisible.setCustomNameVisible(playerHead);
 
         player.setPassenger(armorStandPlayerVisible);
@@ -46,7 +47,7 @@ public class MedalUtil {
         ArmorStand armorStandOutsideVisible = player.getWorld().spawn(player.getLocation(), ArmorStand.class);
         armorStandOutsideVisible.setVisible(false);
         armorStandOutsideVisible.setGravity(false);
-        armorStandOutsideVisible.setCustomName(medal.getDisplay().replace("&", "§"));
+        armorStandPlayerVisible.setCustomName(ChatColor.translateAlternateColorCodes('&', medal.getDisplay()));
         armorStandOutsideVisible.setCustomNameVisible(true);
 
         PacketPlayOutEntityDestroy killStand = new PacketPlayOutEntityDestroy(1, armorStandOutsideVisible.getEntityId());

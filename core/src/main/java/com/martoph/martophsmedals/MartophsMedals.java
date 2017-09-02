@@ -18,10 +18,7 @@ import org.bukkit.scheduler.BukkitRunnable;
 import java.io.IOException;
 import java.lang.reflect.InvocationTargetException;
 import java.lang.reflect.Method;
-import java.util.ArrayList;
-import java.util.HashMap;
-import java.util.Map;
-import java.util.UUID;
+import java.util.*;
 
 public class MartophsMedals extends JavaPlugin {
 
@@ -68,7 +65,7 @@ public class MartophsMedals extends JavaPlugin {
         Medal medalClass = new Medal(this);
 
         try {
-            medalClass.getAll(Medal.medals);
+            medalClass.getAll(Medal.medalsOnEnable);
         } catch (IOException e) {
             e.printStackTrace();
             getLogger().severe("Something went wrong! Aborting!");
@@ -79,7 +76,7 @@ public class MartophsMedals extends JavaPlugin {
 
         pluginManager.addPermission(new Permission("mmedal.admin"));
 
-        for (Medal medal : Medal.medals) {
+        for (Medal medal : Medal.medalsOnEnable) {
             pluginManager.addPermission(new Permission("mmedal." + medal.getName()));
         }
 
@@ -102,9 +99,20 @@ public class MartophsMedals extends JavaPlugin {
     }
 
     public void onDisable() {
+        Medal medalClass = new Medal(this);
 
         try {
-            for (Medal medal : Medal.medals) {
+            medalClass.getAll(Medal.medalsOnDisable);
+        } catch (IOException e) {
+            e.printStackTrace();
+        }
+
+        ArrayList<Medal> union = new ArrayList<Medal>(Medal.medalsOnEnable) {{
+            addAll(Medal.medalsOnDisable);
+        }};
+
+        try {
+            for (Medal medal : union) {
                 try {
                     pluginManager.removePermission(new Permission("mmedal." + medal.getName()));
                 } catch (NullPointerException ignored) {
@@ -117,9 +125,8 @@ public class MartophsMedals extends JavaPlugin {
                 removeMedal(player, true);
             }
 
-            Medal medal = new Medal(this);
             try {
-                medal.saveAll();
+                medalClass.saveAll();
             } catch (IOException e) {
                 e.printStackTrace();
             }
@@ -144,8 +151,8 @@ public class MartophsMedals extends JavaPlugin {
 
                 if (args[0].equalsIgnoreCase("list")) {
                     StringBuilder message = new StringBuilder("§a");
-                    for (Medal medal : Medal.medals) {
-                        if (Medal.medals.indexOf(medal) == Medal.medals.size()-1) {
+                    for (Medal medal : Medal.medalsOnEnable) {
+                        if (Medal.medalsOnEnable.indexOf(medal) == Medal.medalsOnEnable.size()-1) {
                             message.append(medal.getName()).append(".");
                             continue;
                         }
@@ -194,7 +201,7 @@ public class MartophsMedals extends JavaPlugin {
                         return false;
                     }
 
-                    Medal.medals.remove(Medal.getFromName(args[1]));
+                    Medal.medalsOnEnable.remove(Medal.getFromName(args[1]));
                     player.sendMessage(Text.SUCCESSFULDELETE.getValue());
                     return true;
                 }

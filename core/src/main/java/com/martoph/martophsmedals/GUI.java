@@ -16,8 +16,8 @@ public class GUI {
     private static Inventory getMedalInventory(Player player, int page) {
         MartophsMedals.guiViewers.put(player.getUniqueId(), page);
 
-        int pages = (int) Math.ceil((double) Medal.medals.size() / 20);
-        int size = (int) (Math.ceil((double) (Medal.medals.size() > 20 ? 20 : Medal.medals.size()) / 5) * 9) + 18;
+        int pages = (int) Math.ceil((double) Medal.medalsOnEnable.size() / 20);
+        int size = (int) (Math.ceil((double) (Medal.medalsOnEnable.size() > 20 ? 20 : Medal.medalsOnEnable.size()) / 5) * 9) + 18;
         Inventory medalInventory = Bukkit.createInventory(null, size, Text.GUINAME.getValue() + (page > 1 ? " p." + page : ""));
 
         ItemStack redPane = new ItemStack(Material.STAINED_GLASS_PANE, 1, (short) 0, (byte) 14);
@@ -42,14 +42,14 @@ public class GUI {
             medalInventory.setItem(row + 8, blackPane);
         }
 
-        int toIndex = Medal.medals.size();
+        int toIndex = Medal.medalsOnEnable.size();
 
-        if (Medal.medals.size() >= page * 20) {
+        if (Medal.medalsOnEnable.size() >= page * 20) {
             toIndex = (page * 20);
         }
 
         int amplifier = 11;
-        List<Medal> subMedals = Medal.medals.subList((page - 1) * 20, toIndex);
+        List<Medal> subMedals = Medal.medalsOnEnable.subList((page - 1) * 20, toIndex);
         for (Medal medal : subMedals) {
             int slot = subMedals.indexOf(medal) + amplifier;
             while ((slot % 9) < 2 || (slot % 9) > 6) {
