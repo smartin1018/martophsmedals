@@ -9,7 +9,6 @@ import org.bukkit.command.CommandSender;
 import org.bukkit.command.ConsoleCommandSender;
 import org.bukkit.entity.ArmorStand;
 import org.bukkit.entity.Player;
-import org.bukkit.event.Listener;
 import org.bukkit.permissions.Permission;
 import org.bukkit.plugin.Plugin;
 import org.bukkit.plugin.PluginManager;
@@ -104,24 +103,28 @@ public class MartophsMedals extends JavaPlugin {
 
     public void onDisable() {
 
-        for (Medal medal : Medal.medals) {
-            try {
-                pluginManager.removePermission(new Permission("mmedal." + medal.getName()));
-            } catch (NullPointerException ignored) {
-            }
-        }
-        pluginManager.removePermission(new Permission("mmedal.admin"));
-
-        for (Player player : Bukkit.getOnlinePlayers()) {
-            player.closeInventory();
-            removeMedal(player, true);
-        }
-
-        Medal medal = new Medal(this);
         try {
-            medal.saveAll();
-        } catch (IOException e) {
-            e.printStackTrace();
+            for (Medal medal : Medal.medals) {
+                try {
+                    pluginManager.removePermission(new Permission("mmedal." + medal.getName()));
+                } catch (NullPointerException ignored) {
+                }
+            }
+            pluginManager.removePermission(new Permission("mmedal.admin"));
+
+            for (Player player : Bukkit.getOnlinePlayers()) {
+                player.closeInventory();
+                removeMedal(player, true);
+            }
+
+            Medal medal = new Medal(this);
+            try {
+                medal.saveAll();
+            } catch (IOException e) {
+                e.printStackTrace();
+            }
+        } catch (Exception e) {
+            getLogger().severe("Something may've gone horribly wrong with loading and unloading!");
         }
     }
 
