@@ -33,6 +33,7 @@ public class MartophsMedals extends JavaPlugin {
     public static Map<Player, ArmorStand> currentOutsideVisiblePlates = new HashMap<>();
 
     private static String version;
+    public static boolean legacy = false;
 
     static Class<?> medalUtil;
 
@@ -44,6 +45,9 @@ public class MartophsMedals extends JavaPlugin {
         version = packageName.substring(packageName.lastIndexOf('.') + 1);
 
         getLogger().info("Loading MartophsMedals for version " + version);
+
+        if (Integer.parseInt(version.split("_")[1]) < 13)
+            legacy = true;
 
         try {
             medalUtil = Class.forName("com.martoph.martophsmedals." + version + ".MedalUtil");
@@ -168,24 +172,32 @@ public class MartophsMedals extends JavaPlugin {
                 }
 
                 if (args[0].equalsIgnoreCase("create")) {
-                    if (args.length < 4 || args.length > 4) {
+                    if (args.length != 4) {
                         player.sendMessage(Text.SYNTAX.getValue().replace("{usage}", "/medals create <name> <display> <icon material>"));
                         return false;
                     }
 
-                    if (Material.getMaterial(args[3].split(":")[0].toUpperCase()) == null) {
-                        player.sendMessage(Text.INVALIDMATERIAL.getValue());
-                        return false;
+                    if (legacy) {
+                        if (Material.getMaterial(args[3].split(":")[0].toUpperCase()) == null) {
+                            player.sendMessage(Text.INVALIDMATERIAL.getValue());
+                            return false;
+                        }
+
+                        byte data = (byte) 0;
+
+                        try {
+                            data = (byte) Integer.parseInt(args[3].split(":")[1]);
+                        } catch (IndexOutOfBoundsException | NumberFormatException ignored) {}
+
+                        Medal medalClass = new Medal(this);
+                        medalClass.create(args[1], args[2], Material.getMaterial(args[3].split(":")[0].toUpperCase()), data);
+
+                    } else {
+                        if (Material.getMaterial(args[3].toUpperCase()) == null) {
+                            player.sendMessage(Text.INVALIDMATERIAL.getValue());
+                        }
                     }
 
-                    byte data = (byte) 0;
-
-                    try {
-                        data = (byte) Integer.parseInt(args[3].split(":")[1]);
-                    } catch (IndexOutOfBoundsException | NumberFormatException ignored) {}
-
-                    Medal medalClass = new Medal(this);
-                    medalClass.create(args[1], args[2], Material.getMaterial(args[3].split(":")[0].toUpperCase()), data);
                     player.sendMessage(Text.SUCCESSFULCREATE.getValue());
                     return true;
                 }

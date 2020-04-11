@@ -18,10 +18,12 @@ public class InventoryListener implements Listener {
 
             event.setCancelled(true);
 
-            if (event.getRawSlot() == 51 && event.getCurrentItem().getType() == Material.SIGN) {
-                GUI.sendMedalInventory(player, MartophsMedals.guiViewers.get(player.getUniqueId()) + 1);
-            } else if (event.getRawSlot() == 47 && event.getCurrentItem().getType() == Material.SIGN) {
-                GUI.sendMedalInventory(player, MartophsMedals.guiViewers.get(player.getUniqueId()) - 1);
+            int currentPage = MartophsMedals.guiViewers.get(player.getUniqueId());
+
+            if (event.getRawSlot() == 51 && GUI.inventoryExists(currentPage + 1)) {
+                GUI.sendMedalInventory(player,  currentPage + 1);
+            } else if (event.getRawSlot() == 47 && currentPage != 1) {
+                GUI.sendMedalInventory(player, currentPage - 1);
             } else if (event.getRawSlot() == event.getInventory().getSize() - 4 && event.getCurrentItem().getType() == Material.BARRIER) {
                 MartophsMedals.removeMedal(player, true);
             } else if (event.getRawSlot() == event.getInventory().getSize() - 6) {
@@ -62,9 +64,7 @@ public class InventoryListener implements Listener {
 
     @EventHandler
     public void onExit(InventoryCloseEvent event) {
-        if (MartophsMedals.guiViewers.containsKey(event.getPlayer().getUniqueId())) {
-            MartophsMedals.guiViewers.remove(event.getPlayer().getUniqueId());
-        }
+        MartophsMedals.guiViewers.remove(event.getPlayer().getUniqueId());
     }
 
 }

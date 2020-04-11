@@ -13,6 +13,10 @@ import java.util.List;
 
 public class GUI {
 
+    public static boolean inventoryExists(int page) {
+        return page > (int) Math.ceil((double) Medal.medalsOnEnable.size() / 20);
+    }
+
     private static Inventory getMedalInventory(Player player, int page) {
         MartophsMedals.guiViewers.put(player.getUniqueId(), page);
 
@@ -20,8 +24,24 @@ public class GUI {
         int size = (int) (Math.ceil((double) (Medal.medalsOnEnable.size() > 20 ? 20 : Medal.medalsOnEnable.size()) / 5) * 9) + 18;
         Inventory medalInventory = Bukkit.createInventory(null, size, Text.GUINAME.getValue() + (page > 1 ? " p." + page : ""));
 
-        ItemStack redPane = new ItemStack(Material.STAINED_GLASS_PANE, 1, (short) 0, (byte) 14);
-        ItemStack blackPane = new ItemStack(Material.STAINED_GLASS_PANE, 1, (short) 0, (byte) 15);
+        ItemStack redPane = new ItemStack(Material.AIR), blackPane = new ItemStack(Material.AIR);
+
+        if (MartophsMedals.legacy) {
+            Class materialClass = Material.class;
+            Material[] materials = (Material[]) materialClass.getEnumConstants();
+
+            for (Material material : materials) {
+                if (material.toString().equals("STAINED_GLASS_PANE")) {
+                    redPane = new ItemStack(material, 1, (short) 0, (byte) 14);
+                    blackPane = new ItemStack(material, 1, (short) 0, (byte) 15);
+                    break;
+                }
+            }
+
+        } else {
+            redPane = new ItemStack(Material.RED_STAINED_GLASS_PANE);
+            blackPane = new ItemStack(Material.BLACK_STAINED_GLASS_PANE);
+        }
 
         medalInventory.addItem(redPane, blackPane, blackPane, blackPane, blackPane, blackPane, blackPane, blackPane, redPane);
 
@@ -106,12 +126,29 @@ public class GUI {
             return medalInventory;
         }
 
-        ItemStack nextPage = new ItemStack(Material.SIGN);
+        Material sign = Material.AIR;
+
+        if (MartophsMedals.legacy) {
+            Class materialClass = Material.class;
+            Material[] materials = (Material[]) materialClass.getEnumConstants();
+
+            for (Material material : materials) {
+                if (material.toString().equals("SIGN")) {
+                    sign = material;
+                    break;
+                }
+            }
+
+        } else {
+            sign = Material.OAK_SIGN;
+        }
+
+        ItemStack nextPage = new ItemStack(sign);
         ItemMeta nextPageMeta = nextPage.getItemMeta();
         nextPageMeta.setDisplayName(Text.NEXTPAGE.getValue());
         nextPage.setItemMeta(nextPageMeta);
 
-        ItemStack previousPage = new ItemStack(Material.SIGN);
+        ItemStack previousPage = new ItemStack(sign);
         ItemMeta previousPageMeta = previousPage.getItemMeta();
         previousPageMeta.setDisplayName(Text.PREVPAGE.getValue());
         previousPage.setItemMeta(previousPageMeta);

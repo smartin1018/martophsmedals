@@ -9,23 +9,23 @@
     </parent>
     <modelVersion>4.0.0</modelVersion>
 
-    <artifactId>martophsmedals-core</artifactId>
-    <version>core</version>
-
+    <artifactId>martophsmedals-v1_14_R1</artifactId>
+    <version>v1_14_R1</version>
 
     <dependencies>
         <dependency>
-            <groupId>org.spigotmc</groupId>
-            <artifactId>spigot-api</artifactId>
-            <version>1.15.2-R0.1-SNAPSHOT</version>
-            <scope>provided</scope>
+            <groupId>com.martoph</groupId>
+            <artifactId>martophsmedals-core</artifactId>
+            <version>core</version>
         </dependency>
-        <dependency>
+
+        <dependency> <!-- Spigot (this includes Spigot API, Bukkit API, Craftbukkit and NMS) -->
             <groupId>org.spigotmc</groupId>
             <artifactId>spigot</artifactId>
-            <version>1.15.2-R0.1-SNAPSHOT</version>
+            <version>1.14.4-R0.1-SNAPSHOT</version>
             <scope>provided</scope>
         </dependency>
     </dependencies>
+
 
 </project>

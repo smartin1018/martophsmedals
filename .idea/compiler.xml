@@ -6,20 +6,24 @@
         <sourceOutputDir name="target/generated-sources/annotations" />
         <sourceTestOutputDir name="target/generated-test-sources/test-annotations" />
         <outputRelativeToContentRoot value="true" />
-        <module name="martophsmedals-core" />
-        <module name="martophsmedals-v1_10_R1" />
-        <module name="martophsmedals-v1_8_R1" />
-        <module name="martophsmedals-v1_8_R2" />
-        <module name="martophsmedals-v1_8_R3" />
-        <module name="martophsmedals-v1_9_R1" />
+        <module name="martophsmedalsv1_11_R2" />
+        <module name="martophsmedalsv1_11_R1" />
         <module name="martophsmedals-v1_9_R2" />
+        <module name="martophsmedals-v1_15_R1" />
         <module name="martophsmedalsplugin" />
         <module name="MartophsMedalsPlugin" />
-        <module name="martophsmedalsv1_11_R1" />
-        <module name="martophsmedalsv1_11_R2" />
-        <module name="martophsmedalsv1_12_R1" />
+        <module name="martophsmedals-v1_14_R1" />
         <module name="martophsmedalsv1_8_R3" />
+        <module name="martophsmedals-v1_9_R1" />
+        <module name="martophsmedals-v1_13_R1" />
+        <module name="martophsmedals-core" />
+        <module name="martophsmedals-v1_8_R3" />
+        <module name="martophsmedals-v1_8_R2" />
+        <module name="martophsmedals-v1_8_R1" />
         <module name="usertags" />
+        <module name="martophsmedals-v1_13_R2" />
+        <module name="martophsmedalsv1_12_R1" />
+        <module name="martophsmedals-v1_10_R1" />
       </profile>
       <profile name="Annotation profile for MartophsMedals parent" enabled="true">
         <sourceOutputDir name="../target/generated-sources/annotations" />
@@ -34,6 +38,10 @@
       <module name="martophsmedals-parent" target="1.8" />
       <module name="martophsmedals-plugin" target="1.8" />
       <module name="martophsmedals-v1_10_R1" target="1.8" />
+      <module name="martophsmedals-v1_13_R1" target="1.8" />
+      <module name="martophsmedals-v1_13_R2" target="1.8" />
+      <module name="martophsmedals-v1_14_R1" target="1.8" />
+      <module name="martophsmedals-v1_15_R1" target="1.8" />
       <module name="martophsmedals-v1_8_R1" target="1.8" />
       <module name="martophsmedals-v1_8_R2" target="1.8" />
       <module name="martophsmedals-v1_8_R3" target="1.8" />

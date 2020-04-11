@@ -86,7 +86,8 @@ public class Medal {
             medalYaml.createSection("medals.example");
             medalYaml.set("medals.example.display", "&fExample");
             medalYaml.set("medals.example.icon", "DIAMOND_BLOCK");
-            medalYaml.set("medals.example.data", "0");
+            if (MartophsMedals.legacy)
+                medalYaml.set("medals.example.data", "0");
             medalYaml.save(medalFile);
         }
 
@@ -102,7 +103,6 @@ public class Medal {
             display = ChatColor.translateAlternateColorCodes('&', medalYaml.getString(path + ".display"));
 
             icon = Material.getMaterial(medalYaml.get(path + ".icon").toString().toUpperCase());
-            data = (byte) medalYaml.getInt(path + ".data");
 
             try {
                 icon.name();
@@ -115,12 +115,15 @@ public class Medal {
                 display = display.substring(0, 15);
             }
 
-            Medal medal = new Medal(key, display, icon, data);
+            if (MartophsMedals.legacy)
+                data = (byte) medalYaml.getInt(path + ".data");
+
+            Medal medal = new Medal(key, display, icon, MartophsMedals.legacy ? data : 0);
             medalList.add(medal);
         }
     }
 
-    void create(String name, String display, Material icon, byte data){
+    void create(String name, String display, Material icon, byte data) {
         Medal medal = new Medal(name, display, icon, data);
         medalsOnEnable.add(medal);
     }
@@ -143,7 +146,8 @@ public class Medal {
 
             medalYaml.set("medals." + medal.getName() + ".display", medal.getDisplay().replace("§", "&"));
             medalYaml.set("medals." + medal.getName() + ".icon", medal.getIcon().name());
-            medalYaml.set("medals." + medal.getName() + ".data", medal.getData());
+            if (MartophsMedals.legacy)
+                medalYaml.set("medals." + medal.getName() + ".data", medal.getData());
         }
 
         for (String key : medalYaml.getConfigurationSection("medals").getKeys(false)) {
