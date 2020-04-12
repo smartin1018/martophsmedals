@@ -158,20 +158,6 @@ public class Medal {
         medalYaml.save(medalFile);
     }
 
-    public static Medal getFromDisplayName(String displayName) {
-        Medal medal = null;
-        for (Medal medalSearch : Medal.medalsOnEnable) {
-            try {
-                if (medalSearch.getDisplay().replace("&", "§").equals(displayName)) {
-                    medal = medalSearch;
-                }
-            } catch (NullPointerException e) {
-                return null;
-            }
-        }
-        return medal;
-    }
-
     public static Medal getFromName(String name) {
         Medal medal = null;
         for (Medal medalSearch : Medal.medalsOnEnable) {

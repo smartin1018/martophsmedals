@@ -1,5 +1,6 @@
 package com.martoph.martophsmedals;
 
+import com.mojang.datafixers.util.Pair;
 import org.bukkit.Bukkit;
 import org.bukkit.Location;
 import org.bukkit.Material;
@@ -18,7 +19,10 @@ import org.bukkit.scheduler.BukkitRunnable;
 import java.io.IOException;
 import java.lang.reflect.InvocationTargetException;
 import java.lang.reflect.Method;
-import java.util.*;
+import java.util.ArrayList;
+import java.util.HashMap;
+import java.util.Map;
+import java.util.UUID;
 
 public class MartophsMedals extends JavaPlugin {
 
@@ -31,6 +35,7 @@ public class MartophsMedals extends JavaPlugin {
     public static HashMap<UUID, Integer> guiViewers = new HashMap<>();
     public static Map<Player, ArmorStand> currentPlayerOwnedPlates = new HashMap<>();
     public static Map<Player, ArmorStand> currentOutsideVisiblePlates = new HashMap<>();
+    public static Map<Pair<Integer, Integer>, Medal> medalMap = new HashMap<>();
 
     private static String version;
     public static boolean legacy = false;
@@ -95,6 +100,8 @@ public class MartophsMedals extends JavaPlugin {
                 }
             }
         }.runTaskTimer(this, 0, 1);
+
+        GUI.predictMedalPlacement();
 
     }
 

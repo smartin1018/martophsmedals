@@ -1,5 +1,6 @@
 package com.martoph.martophsmedals;
 
+import com.mojang.datafixers.util.Pair;
 import org.bukkit.Bukkit;
 import org.bukkit.Material;
 import org.bukkit.entity.Player;
@@ -77,7 +78,7 @@ public class GUI {
                 amplifier++;
             }
 
-            ItemStack medalItem = new ItemStack(medal.getIcon(), 1, (short) 0, medal.getData());
+            ItemStack medalItem = MartophsMedals.legacy ? new ItemStack(medal.getIcon(), 1, (short) 0, medal.getData()) : new ItemStack(medal.getIcon());
             ItemMeta medalItemMeta = medalItem.getItemMeta();
             if (!player.hasPermission("mmedals." + medal.getName())) {
                 List<String> lore = new ArrayList<String>() {{
@@ -175,6 +176,28 @@ public class GUI {
     public static void sendMedalInventory(Player player, int page) {
         player.closeInventory();
         player.openInventory(getMedalInventory(player, page));
+    }
+
+    public static void predictMedalPlacement() {
+        for (int page = 1; page < Math.ceil((double) Medal.medalsOnEnable.size() / 20) + 1; page++) {
+            int toIndex = Medal.medalsOnEnable.size();
+
+            if (Medal.medalsOnEnable.size() >= page * 20) {
+                toIndex = (page * 20);
+            }
+
+            int amplifier = 11;
+            List<Medal> subMedals = Medal.medalsOnEnable.subList((page - 1) * 20, toIndex);
+            for (Medal medal : subMedals) {
+                int slot = subMedals.indexOf(medal) + amplifier;
+                while ((slot % 9) < 2 || (slot % 9) > 6) {
+                    slot++;
+                    amplifier++;
+                }
+
+                MartophsMedals.medalMap.put(Pair.of(slot, page), medal);
+            }
+        }
     }
 
 }

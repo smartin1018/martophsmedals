@@ -7,16 +7,13 @@
   </parent>
   <modelVersion>4.0.0</modelVersion>
   <artifactId>martophsmedals-plugin</artifactId>
-  <version>1.1.10</version>
+  <version>1.2.0</version>
   <build>
-    <directory>../target</directory>
     <plugins>
       <plugin>
-        <artifactId>maven-compiler-plugin</artifactId>
-        <version>3.6.2</version>
+        <artifactId>maven-jar-plugin</artifactId>
         <configuration>
-          <source>1.8</source>
-          <target>1.8</target>
+          <outputDirectory>${dir}</outputDirectory>
         </configuration>
       </plugin>
       <plugin>
@@ -37,7 +34,7 @@
     <dependency>
       <groupId>org.spigotmc</groupId>
       <artifactId>spigot</artifactId>
-      <version>1.12.1-R0.1-SNAPSHOT</version>
+      <version>1.15.2-R0.1-SNAPSHOT</version>
       <scope>provided</scope>
       <optional>true</optional>
     </dependency>

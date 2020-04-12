@@ -10,9 +10,15 @@
     <modelVersion>4.0.0</modelVersion>
 
     <artifactId>martophsmedals-plugin</artifactId>
-    <version>1.1.10</version>
+    <version>1.2.0</version>
 
     <dependencies>
+        <dependency>
+            <groupId>com.mojang</groupId>
+            <artifactId>datafixerupper</artifactId>
+            <version>1.0.20</version>
+            <scope>compile</scope>
+        </dependency>
         <dependency>
             <groupId>com.martoph</groupId>
             <artifactId>martophsmedals-core</artifactId>
@@ -85,6 +91,38 @@
             <scope>compile</scope>
             <optional>true</optional>
         </dependency>
+        <dependency>
+            <groupId>com.martoph</groupId>
+            <artifactId>martophsmedals-v1_13_R1</artifactId>
+            <version>v1_13_R1</version>
+            <type>jar</type>
+            <scope>compile</scope>
+            <optional>true</optional>
+        </dependency>
+        <dependency>
+            <groupId>com.martoph</groupId>
+            <artifactId>martophsmedals-v1_13_R2</artifactId>
+            <version>v1_13_R2</version>
+            <type>jar</type>
+            <scope>compile</scope>
+            <optional>true</optional>
+        </dependency>
+        <dependency>
+            <groupId>com.martoph</groupId>
+            <artifactId>martophsmedals-v1_14_R1</artifactId>
+            <version>v1_14_R1</version>
+            <type>jar</type>
+            <scope>compile</scope>
+            <optional>true</optional>
+        </dependency>
+        <dependency>
+            <groupId>com.martoph</groupId>
+            <artifactId>martophsmedals-v1_15_R1</artifactId>
+            <version>v1_15_R1</version>
+            <type>jar</type>
+            <scope>compile</scope>
+            <optional>true</optional>
+        </dependency>
         <dependency> <!-- Spigot (this includes Spigot API, Bukkit API, Craftbukkit and NMS) -->
             <groupId>org.spigotmc</groupId>
             <artifactId>spigot</artifactId>
@@ -96,15 +134,12 @@
     </dependencies>
 
     <build>
-        <directory>../target</directory> <!-- Build it one level up, because it is the one we care about -->
         <plugins>
             <plugin>
                 <groupId>org.apache.maven.plugins</groupId>
-                <artifactId>maven-compiler-plugin</artifactId>
-                <version>3.6.2</version>
+                <artifactId>maven-jar-plugin</artifactId>
                 <configuration>
-                    <source>1.8</source>
-                    <target>1.8</target>
+                    <outputDirectory>${dir}</outputDirectory>
                 </configuration>
             </plugin>
             <plugin>
